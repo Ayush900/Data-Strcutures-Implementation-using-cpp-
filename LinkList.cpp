@@ -197,21 +197,89 @@ node* mergesortll(node* head)
 	return head;
 }
 
+// Add two numbers represented as a linklist
+
+node* addtwonumbers(node* h1,node* h2)
+{
+	node* t1 = reversell(h1);
+	node* t2 = reversell(h2);
+	int sum = 0;
+	int carry = 0;
+	node* h3 =  new node(0);
+	node* t3 = h3;
+	while(t1!=NULL || t2!=NULL)
+	{
+		sum = carry;
+		if(t1!=NULL)
+		{
+			sum+=t1->data;
+			t1 = t1->next;
+		}
+		if(t2!=NULL)
+		{
+			sum+=t2->data;
+			t2 = t2->next;
+		}
+		int k =sum%10;
+		carry=sum/10;
+		t3->data = k;
+		node*t4 = new node(0);
+		t3->next = t4;
+		t3 = t3->next;
+	}
+	if(carry == 1)
+	{
+		t3->data = carry;
+		h3 = reversell(h3);
+		return h3;
+	}
+
+		node* t = h3;
+		while(t->next!=t3)
+		{
+			t=t->next;
+		}
+		t->next = NULL;
+	
+	h3 = reversell(h3);
+	return h3;
+}
+
 int main()
 {
-	linklist l;
-	l.insertAtend(5);
-	l.insertAtend(4);
-	l.insertAtend(9);
-	l.insertAtend(1);
-	l.insertAtend(6);
-	l.print();
+	linklist l1;
+	l1.insertAtend(8);
+	l1.insertAtend(0);
+	l1.insertAtend(5);
+	cout<<"first number :";
+	l1.print();
 	cout<<endl;
-	int n = l.size();
-	cout<<n;
-	cout<<endl;
-	l.head = mergesortll(l.head);
-	l.print();
+	linklist l2;
+	l2.insertAtend(1);
+	l2.insertAtend(9);
+	l2.insertAtend(5);
+	cout<<"second number :";
+	l2.print();
+	cout<<endl;	
+	linklist l3;
+	node* k = addtwonumbers(l1.head,l2.head);
+	l3.head = k;
+	
+	cout<<"answer : ";
+	l3.print();
+	cout<<endl;		
+//	l.insertAtend(5);
+//	l.insertAtend(4);
+//	l.insertAtend(9);
+//	l.insertAtend(1);
+//	l.insertAtend(6);
+//	l.print();
+//	cout<<endl;
+//	int n = l.size();
+//	cout<<n;
+//	cout<<endl;
+//	l.head = mergesortll(l.head);
+//	l.print();
 //	l.delatpos(0);
 //	l.print();
 //	l.head = reversell(l.head);
@@ -223,7 +291,7 @@ int main()
 //	node* mid = findmid(l.head);
 //	cout<<mid->data;
 
-	l.head = mergesortll(l.head);
+//	l.head = mergesortll(l.head);
 	return 0;
 }
 
@@ -294,20 +362,20 @@ int main()
 //	return prev;
 //}
 //
-int main()
-{
-
-	linkedlist l;
-	l.insertAtend(1);
-	l.insertAtend(2);
-	l.insertAtend(3);
-	l.insertAtend(4);
-	l.insertAtend(5);
-	
-	l.print();
-	cout<<endl;
-	l.head = reversell(l.head);
-	l.print();
-	return 0;
-}
+//int main()
+//{
+//
+//	linkedlist l;
+//	l.insertAtend(1);
+//	l.insertAtend(2);
+//	l.insertAtend(3);
+//	l.insertAtend(4);
+//	l.insertAtend(5);
+//	
+//	l.print();
+//	cout<<endl;
+//	l.head = reversell(l.head);
+//	l.print();
+//	return 0;
+//}
 
